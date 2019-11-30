@@ -1,7 +1,8 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-import request
-from flask import jsonify
+import requests
+
+# from flask import jsonify
 # from pip._vendor import requests
 
 window = tk.Tk()
@@ -18,12 +19,12 @@ image_label.place(relheight=1,relwidth=1)
 def get_weather():
     print('this is the weather')
     user = entry.get()
-    key = '6557bbd7dbca062ddf4fe097XXXX'
+    key = '6557bbd7dbca062ddf4fe097dc1fXXXXX'
     # api.openweathermap.org/data/2.5/weather?q={city name},{country code}
     url = 'https://api.openweathermap.org/data/2.5/weather'
-    params = {'APPID':key,'q': user,'units':'metric'}
-    response = request.GET(url, params=params)
-    return jsonify(response.JSON())
+    params = {'APPID':key, 'q': user, 'units':'metric'}
+    response = requests.get(url, params=params)
+    print(response.json()) # this also didn't worked
 
 
 top_frame = tk.Frame(window)
